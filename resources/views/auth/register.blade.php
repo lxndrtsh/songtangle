@@ -18,6 +18,11 @@
 									@endforeach
 								</ul>
 							</div>
+						@else
+							<div class="alert alert-dismissible alert-info">
+								<button type="button" class="close" data-dismiss="alert">×</button>
+								<strong>Welcome!</strong> We'll make this simple. Give us the requested information below, and we'll give you an account. Once you are at your account, we'll ask you to fill out some extra stuff before connecting to local musicians. No fuss!
+							</div>
 						@endif
 						<div class="form-group">
 							<label class="col-md-4 control-label">Songtangle Alias</label>
