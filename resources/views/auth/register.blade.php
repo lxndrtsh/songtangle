@@ -49,7 +49,7 @@
 						<div class="col-md-12">
 							<hr />
 							<div class="pull-right">
-								<a class="btn btn-primary" href="/auth/register" role="button">Next &raquo;</a>
+								<button type="submit" class="btn btn-primary">Register</button>
 							</div>
 						</div>
 					</form>
