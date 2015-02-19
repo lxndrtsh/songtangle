@@ -1,0 +1,26 @@
+.jumbo-container {
+    background: #272b30 url(/img/bg1.png) -1240px -1230px;
+    margin-top:-20px;
+    padding-top:20px;
+    margin-bottom:35px;
+}
+
+.container-fluid .row.content {
+    margin-bottom:45px;
+}
+
+div img, p img {
+    width:100%;
+    border:1px solid #0c0d0e;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.larger-font {
+    font-size:18px;
+}
+
+p span {
+    font-size:19px;
+}
