@@ -16,6 +16,11 @@
 								@endforeach
 							</ul>
 						</div>
+					@else
+						<div class="alert alert-dismissible alert-info">
+							<button type="button" class="close" data-dismiss="alert">×</button>
+							<strong>Hey there!</strong> Please use your email address and password to access your account.
+						</div>
 					@endif
 
 					<form class="form-horizontal" role="form" method="POST" action="/auth/login">
