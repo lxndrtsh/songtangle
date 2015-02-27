@@ -22,7 +22,7 @@
 	<![endif]-->
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
@@ -57,6 +57,7 @@
 		</div>
 	</nav>
 
+	<div class="top-fill"></div>
 	@yield('content')
 
 	<!-- Scripts -->
