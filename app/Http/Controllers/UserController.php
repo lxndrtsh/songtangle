@@ -1,18 +1,15 @@
 <?php namespace App\Http\Controllers;
 
-//use App\Interfaces\UserRepositoryInterface;
-use App\Repository\UserRepository;
+use App\Interfaces\UserRepositoryInterface;
+//use App\Repository\UserRepository;
 
 class UserController extends Controller {
 
-
-	private $auth;
-
 	/**
-	 * @param UserRepository $user
+	 * @param UserRepositoryInterface $user
 	 * @internal param Guard $auth
 	 */
-	public function __construct(UserRepository $user)
+	public function __construct(UserRepositoryInterface $user)
 	{
 		$this->middleware('auth');
 		$this->user = $user;

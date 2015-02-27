@@ -146,6 +146,12 @@ return [
 		'App\Providers\RouteServiceProvider',
 
 		/*
+		 * Custom Service Providers
+		 */
+
+		'App\Providers\SongtangleServiceProvider',
+
+		/*
 		 * Third Party Service Providers...
 		 */
 		'Barryvdh\Debugbar\ServiceProvider',

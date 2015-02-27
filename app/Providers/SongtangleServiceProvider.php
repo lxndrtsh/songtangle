@@ -18,8 +18,6 @@ class SongtangleServiceProvider extends ServiceProvider
 	public function __construct($app)
 	{
 		parent::__construct($app);
-
-		$this->transformerFactory = \App::make(TransformerFactory::class);
 	}
 
 
