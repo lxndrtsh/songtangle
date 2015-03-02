@@ -44,10 +44,13 @@
 								<li><a href="/auth/register">Register</a></li>
 							@else
 								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->alias }} <span class="caret"></span></a>
-									<ul class="dropdown-menu" role="menu">
-										<li><a href="/auth/logout">Logout</a></li>
-									</ul>
+									@include('plugins.notify.push')
+								</li>
+								<li class="dropdown">
+									@include('plugins.notify.message')
+								</li>
+								<li class="dropdown">
+									@include('plugins.dropdown.account')
 								</li>
 							@endif
 						</ul>

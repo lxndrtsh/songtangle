@@ -30,8 +30,17 @@ p span {
     font-size:19px;
 }
 
+.me-area {
+    padding-left:10px !important;
+}
+
 .me-area h4 {
     margin-top:0px;
+    font-size:2rem;
+}
+
+.me-area a {
+    font-size:11px;
 }
 
 .top-fill {
@@ -45,12 +54,13 @@ p span {
 .listing ul {
     list-style-type: none;
     padding:0;
+    overflow-x: hidden;
 }
 .listing ul li {
     list-style-type: none;
     margin-top:5px;
     margin-bottom:5px;
-    /*padding-left:15px;*/
+    white-space: nowrap;
 }
 .listing ul li img {
     max-width:25px;
