@@ -19,3 +19,11 @@ Route::controllers([
 
 Route::get('/me', 'UserController@index');
 Route::get('/u/{alias}', 'ProfileController@index');
+
+Route::group(['prefix'=>'api'], function()
+{
+	Route::resource('instruments', 'Api\InstrumentController',
+		['only' => ['index', 'show']]);
+	Route::resource('genres', 'Api\GenreController',
+		['only' => ['index', 'show']]);
+});
