@@ -1,10 +1,10 @@
-<div class="row">
-    <div class="col-md-4">
+<div class="row no-padding">
+    <div class="col-md-5 no-padding">
         <a href="/me/settings/profile-image"><img src="http://www.placecage.com/c/250/250" /></a>
     </div>
-    <div class="col-md-8 me-area">
+    <div class="col-md-7 me-area no-padding">
         <h4>{{ $user->alias }}</h4>
-        <a href="/me/settings">Edit Profile Settings</a>
+        <a href="/me/settings">Edit Profile</a>
     </div>
 </div>
 <div class="row">
