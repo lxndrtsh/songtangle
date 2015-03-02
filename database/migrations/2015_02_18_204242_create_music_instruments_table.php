@@ -15,7 +15,7 @@ class CreateMusicInstrumentsTable extends Migration {
 		Schema::create('music_instruments', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('instruments');
+			$table->string('instrument');
 			$table->timestamps();
 		});
 	}
