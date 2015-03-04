@@ -5,6 +5,7 @@ use App\Interfaces\MusicInstrumentRepositoryInterface;
 use Doctrine\Instantiator\Exception\InvalidArgumentException;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Validation\Factory as Validation;
+use Illuminate\Support\Collection;
 
 /**
  * Class InstrumentController
@@ -12,23 +13,36 @@ use Illuminate\Contracts\Validation\Factory as Validation;
  */
 class InstrumentController extends Controller
 {
-    public function __construct(Request $request, Validation $validation, MusicInstrumentRepositoryInterface $instrument)
-    {
+    public function __construct(
+        Request $request,
+        Validation $validation,
+        MusicInstrumentRepositoryInterface $instrument,
+        Collection $collection
+    ){
         $this->request = $request;
         $this->validation = $validation;
         $this->instrument = $instrument;
+        $this->collection = $collection;
     }
 
     public function index()
     {
         if($this->request->get('via') === 'wildcard') {
             $this->validateRequest(
-                ['instrument'=>$this->request->get('instrument')],
+                ['instrument'=>$this->request->get('q')],
                 ['instrument'=>'required|min:3']
             );
 
-            $result = $this->instrument->getByWildcard($this->request->get('instrument'));
-            return response()->json($result->toArray());
+            $result = $this->instrument->getByWildcard($this->request->get('q'));
+
+            $return = $this->collection->make([
+                'requested_data' => 'InstrumentAPI',
+                'response' => 200,
+                'count' => $result->count(),
+                'items' => $result
+            ]);
+
+            return response()->json($return->toArray());
         }else{
             $result = $this->instrument->getEverything();
             return response()->json($result->toArray());

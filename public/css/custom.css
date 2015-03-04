@@ -102,3 +102,10 @@ p span {
     width:100%;
     height:40px;
 }
+
+.autoResults {
+    display: none;
+    padding: 5px;
+    background: #222;
+    margin-top: 0px;
+}

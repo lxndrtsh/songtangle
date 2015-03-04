@@ -84,7 +84,20 @@
                 <h3 class="panel-title">Instruments You Play</h3>
             </div>
             <div class="panel-body">
-                Panel content
+                <form class="form-horizontal" action="/profile/instruments">
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <input type="text" class="form-control" id="instrumentInput" placeholder="Enter an instrument..." autocomplete="off">
+                            <div class="autoResults" id="instrumentResults"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <button type="submit" class="btn btn-primary pull-right" id="instrumentAddMore">Add More</button>
+                            <button type="submit" class="btn btn-primary pull-right" id="instrumentAddFinish">Complete</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -96,7 +109,20 @@
                 <h3 class="panel-title">Genres You Play</h3>
             </div>
             <div class="panel-body">
-                Panel content
+                <form class="form-horizontal" action="/profile/genres">
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <input type="text" class="form-control" id="genreInput" placeholder="Enter a genre..." autocomplete="off">
+                            <div class="autoResults" id="genreResults"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <button type="submit" class="btn btn-primary pull-right" id="genreAddMore">Add More</button>
+                            <button type="submit" class="btn btn-primary pull-right" id="genreAddFinish">Complete</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
