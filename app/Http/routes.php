@@ -24,6 +24,9 @@ Route::group(['prefix'=>'profile'], function()
 {
     Route::post('/address', 'PostRequests\SettingsController@updateAddress');
     Route::post('/basics', 'PostRequests\SettingsController@updateBasics');
+    Route::post('/settings', 'PostRequests\SettingsController@updateSettings');
+    Route::post('/instruments', 'PostRequests\UserMusicController@updateInstruments');
+    Route::post('/genres','PostRequests\UserMusicController@updateGenres');
 });
 
 Route::group(['prefix'=>'api'], function()

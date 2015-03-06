@@ -66,4 +66,18 @@ class SettingsController extends PostRequestsBaseController
 
         return redirect('/me');
     }
+
+    public function updateSettings()
+    {
+        $this->settings->setting($this->user->id, $this->request->only(
+            'settingsAllowFriendRequest',
+            'settingsAllowViewProfile',
+            'settingsAllowBandRequest',
+            'settingsAllowViewAge',
+            'settingsAllowViewGender',
+            'settingsAllowViewEmail',
+            'settingsAllowViewPhone'
+        ));
+        return redirect('/me');
+    }
 }

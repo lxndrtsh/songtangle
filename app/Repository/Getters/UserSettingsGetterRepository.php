@@ -2,6 +2,7 @@
 
 use App\Interfaces\UserSettingsGetterRepositoryInterface;
 use App\Models\UserBasicInformation;
+use App\Models\UserSetting;
 
 /**
  * Class UserSettingsGetterRepository
@@ -14,14 +15,21 @@ class UserSettingsGetterRepository implements UserSettingsGetterRepositoryInterf
     protected $user_id;
 
     public function __construct(
-        UserBasicInformation $basicInformation
+        UserBasicInformation $basicInformation,
+        UserSetting $userSetting
     ){
         $this->basicInformation = $basicInformation;
+        $this->userSetting = $userSetting;
     }
 
     public function setUserId($user_id)
     {
         $this->user_id = $user_id;
+    }
+
+    public function getBasicInformation__Count()
+    {
+        return $this->basicInformation->where('user_id',$this->user_id)->count();
     }
 
     public function getBasicInformation__All()
@@ -92,5 +100,50 @@ class UserSettingsGetterRepository implements UserSettingsGetterRepositoryInterf
     public function getBasicInformation__Template_Location()
     {
         return $this->basicInformation->select('address', 'address_2', 'city', 'state', 'zip_code')->where('user_id',$this->user_id)->get();
+    }
+
+    public function getSetting__Count()
+    {
+        return $this->userSetting->where('user_id',$this->user_id)->count();
+    }
+
+    public function getSetting__All()
+    {
+        return $this->userSetting->where('user_id',$this->user_id)->get();
+    }
+
+    public function getSetting__AllowFriendRequests()
+    {
+        return $this->userSetting->select('allow_friend_requests')->where('user_id',$this->user_id)->get();
+    }
+
+    public function getSetting__AllowBandRequests()
+    {
+        return $this->userSetting->select('allow_band_requests')->where('user_id',$this->user_id)->get();
+    }
+
+    public function getSetting__AllowViewAge()
+    {
+        return $this->userSetting->select('allow_view_age')->where('user_id',$this->user_id)->get();
+    }
+
+    public function getSetting__AllowViewGender()
+    {
+        return $this->userSetting->select('allow_view_gender')->where('user_id',$this->user_id)->get();
+    }
+
+    public function getSetting__AllowViewEmail()
+    {
+        return $this->userSetting->select('allow_view_email')->where('user_id',$this->user_id)->get();
+    }
+
+    public function getSetting__AllowViewPhone()
+    {
+        return $this->userSetting->select('allow_view_phone')->where('user_id',$this->user_id)->get();
+    }
+
+    public function getSetting__AllowViewProfile()
+    {
+        return $this->userSetting->select('allow_view_profile')->where('user_id',$this->user_id)->get();
     }
 }
