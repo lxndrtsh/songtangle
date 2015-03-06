@@ -1,4 +1,4 @@
-#Songtangle#  
+#Songtangle  
 ![Status Dev](https://img.shields.io/badge/status-dev-orange.svg) ![Build 0.0.1](https://img.shields.io/badge/build-0.0.1-green.svg) ![Branch master](https://img.shields.io/badge/branch-master-brightgreen.svg) ![Built with laravel-5.0](https://img.shields.io/badge/built--with-laravel--5.0-lightgrey.svg) ![PHP >= 5.0](https://img.shields.io/badge/php-%3E=5.0-blue.svg)
 
 Songtangle is a web application built using the [Laravel](http://laravel.com) framework. The development is open for any other developer who wishes to come along, at this time. Please use the master branch to create any branches of your own off of and place a pull request when you wish to merge some of your code in.
