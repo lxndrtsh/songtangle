@@ -3,7 +3,9 @@
 use App\Interfaces\MusicGenreRepositoryInterface;
 use App\Interfaces\MusicInstrumentRepositoryInterface;
 use App\Interfaces\UserRepositoryInterface;
+use App\Interfaces\UserSettingsGetterRepositoryInterface;
 use App\Interfaces\UserSettingsRepositoryInterface;
+use App\Repository\Getters\UserSettingsGetterRepository;
 use App\Repository\MusicGenreRepository;
 use App\Repository\MusicInstrumentRepository;
 use App\Repository\UserRepository;
@@ -33,5 +35,6 @@ class SongtangleServiceProvider extends ServiceProvider
 		$this->app->bind(MusicInstrumentRepositoryInterface::class, MusicInstrumentRepository::class);
 		$this->app->bind(MusicGenreRepositoryInterface::class, MusicGenreRepository::class);
         $this->app->bind(UserSettingsRepositoryInterface::class, UserSettingsRepository::class);
+        $this->app->bind(UserSettingsGetterRepositoryInterface::class, UserSettingsGetterRepository::class);
 	}
 }

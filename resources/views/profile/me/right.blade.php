@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="progress progress-striped">
-            <div class="progress-bar progress-bar-warning" style="width: 60%"></div>
+            <div class="progress-bar progress-bar-warning" style="width: {{ $show['percentage'] }}%"></div>
         </div>
     </div>
 </div>
@@ -15,102 +15,106 @@
         <p>You're nearly done completing your Songtangle account! Before people can search you, you need to complete these.</p>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-warning">
-            <div class="panel-heading">
-                <h3 class="panel-title">Basic Information</h3>
-            </div>
-            <div class="panel-body">
-                <form class="form-horizontal" action="/profile/basics" method="post">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <fieldset>
-                        <div class="form-group">
-                            <div class="col-lg-12">
-                                <input type="text" class="form-control" name="inputFirstname" placeholder="First Name">
+@if($show['basicInformation'] === true)
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Basic Information</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" action="/profile/basics" method="post">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <fieldset>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <input type="text" class="form-control" name="inputFirstname" placeholder="First Name">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-12">
-                                <input type="text" class="form-control" name="inputLastname" placeholder="Last Name">
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <input type="text" class="form-control" name="inputLastname" placeholder="Last Name">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-12">
-                                <select name="inputGender" class="form-control">
-                                    <option value="">Select one</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <select name="inputGender" class="form-control">
+                                        <option value="">Select one</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-12">
-                                <label>Date of Birth:</label>
-                                <input type="date" class="form-control" name="inputDateOfBirth" placeholder="Date of Birth">
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <label>Date of Birth:</label>
+                                    <input type="date" class="form-control" name="inputDateOfBirth" placeholder="Date of Birth">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-12">
-                                <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                                </div>
                             </div>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-warning">
-            <div class="panel-heading">
-                <h3 class="panel-title">Your Location</h3>
-            </div>
-            <div class="panel-body">
-                <form class="form-horizontal" action="/profile/address" method="post">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <fieldset>
-                        <div class="form-group">
-                            <div class="col-lg-12">
-                                <input type="text" class="form-control" name="inputAddress1" placeholder="Street Address">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-12">
-                                <input type="text" class="form-control" name="inputAddress2" placeholder="Apt/Suite">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-12">
-                                <input type="text" class="form-control" name="inputCity" placeholder="City">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-12">
-                                <select class="form-control" name="inputState">
-                                    @foreach($states as $state)
-                                        <option>{{ $state }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-12">
-                                <input type="text" class="form-control" name="inputPostalCode" placeholder="Postal Code">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-12">
-                                <button type="submit" class="btn btn-primary pull-right">Submit</button>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
+                        </fieldset>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+@endif
+@if($show['address'] === true)
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Your Location</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" action="/profile/address" method="post">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <fieldset>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <input type="text" class="form-control" name="inputAddress1" placeholder="Street Address">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <input type="text" class="form-control" name="inputAddress2" placeholder="Apt/Suite">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <input type="text" class="form-control" name="inputCity" placeholder="City">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <select class="form-control" name="inputState">
+                                        @foreach($states as $state)
+                                            <option>{{ $state }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <input type="text" class="form-control" name="inputPostalCode" placeholder="Postal Code">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-warning">

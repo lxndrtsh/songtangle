@@ -28,7 +28,6 @@ class SettingsController extends PostRequestsBaseController
         $this->_validateRequest(
             [
                 $this->request->input('inputAddress1'),
-                $this->request->input('inputAddress2'),
                 $this->request->input('inputCity'),
                 $this->request->input('inputState'),
                 $this->request->input('inputPostalCode')
@@ -36,13 +35,14 @@ class SettingsController extends PostRequestsBaseController
             [
                 'required|min:3',
                 'required|min:3',
-                'required|min:3',
                 'required',
                 'required|numeric|min:5'
             ]
         );
 
-        $this->settings->basicInformation($this->user->id, $this->request->only(['inputAddress1','inputCity','inputState','inputPostalCode']));
+        $this->settings->basicInformation($this->user->id, $this->request->only(['inputAddress1','inputAddress2','inputCity','inputState','inputPostalCode']));
+
+        return redirect('/me');
     }
 
     public function updateBasics()
@@ -63,5 +63,7 @@ class SettingsController extends PostRequestsBaseController
         );
 
         $this->settings->basicInformation($this->user->id, $this->request->only(['inputFirstname','inputLastname','inputGender','inputDateOfBirth']));
+
+        return redirect('/me');
     }
 }
