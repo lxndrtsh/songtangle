@@ -127,56 +127,60 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 class="panel-title">Instruments You Play</h3>
-            </div>
-            <div class="panel-body">
-                <form class="form-horizontal" action="/profile/instruments" method="post">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <div class="form-group">
-                        <div class="col-lg-12">
-                            <input type="text" class="form-control" id="instrumentInput" placeholder="Enter an instrument..." autocomplete="off">
-                            <div class="autoResults" id="instrumentResults"></div>
+@if($show['instruments'] === true)
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Instruments You Play</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" action="/profile/instruments" method="post">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <input type="text" class="form-control" id="instrumentInput" placeholder="Enter an instrument..." autocomplete="off">
+                                <div class="autoResults" id="instrumentResults"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-lg-12">
-                            <button type="submit" class="btn btn-primary pull-right" id="instrumentAddFinish">Add</button>
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <button type="submit" class="btn btn-primary pull-right" id="instrumentAddFinish">Add</button>
+                            </div>
                         </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 class="panel-title">Genres You Play</h3>
-            </div>
-            <div class="panel-body">
-                <form class="form-horizontal" action="/profile/genres" method="post">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <div class="form-group">
-                        <div class="col-lg-12">
-                            <input type="text" class="form-control" id="genreInput" placeholder="Enter a genre..." autocomplete="off">
-                            <div class="autoResults" id="genreResults"></div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-lg-12">
-                            <button type="submit" class="btn btn-primary pull-right" id="genreAddFinish">Add</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+@endif
+@if($show['genres'] === true)
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Genres You Play</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" action="/profile/genres" method="post">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <input type="text" class="form-control" id="genreInput" placeholder="Enter a genre..." autocomplete="off">
+                                <div class="autoResults" id="genreResults"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <button type="submit" class="btn btn-primary pull-right" id="genreAddFinish">Add</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
 @if($show['settings'] === true)
     <div class="row">
         <div class="col-md-12">
