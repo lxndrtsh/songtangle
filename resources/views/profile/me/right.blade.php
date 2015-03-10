@@ -28,27 +28,36 @@
                         <fieldset>
                             <div class="form-group">
                                 <div class="col-lg-12">
-                                    <input type="text" class="form-control" name="inputFirstname" placeholder="First Name">
+                                    <input type="text" class="form-control" name="inputFirstname" placeholder="First Name" value="{{ $userSettings->getBasicInformation__Firstname() }}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-lg-12">
-                                    <input type="text" class="form-control" name="inputLastname" placeholder="Last Name">
+                                    <input type="text" class="form-control" name="inputLastname" placeholder="Last Name" value="{{ $userSettings->getBasicInformation__Lastname() }}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-lg-12">
                                     <select name="inputGender" class="form-control">
                                         <option value="">Select one</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
+                                        @if($userSettings->getBasicInformation__Gender() == 'Male')
+                                            <option value="Male" selected>Male</option>
+                                        @else
+                                            <option value="Male">Male</option>
+                                        @endif
+
+                                        @if($userSettings->getBasicInformation__Gender() == 'Female')
+                                            <option value="Female" selected>Female</option>
+                                        @else
+                                            <option value="Female">Female</option>
+                                        @endif
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-lg-12">
                                     <label>Date of Birth:</label>
-                                    <input type="date" class="form-control" name="inputDateOfBirth" placeholder="Date of Birth">
+                                    <input type="date" class="form-control" name="inputDateOfBirth" placeholder="Date of Birth" value="{{ $birth->format('Y-m-d') }}">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -122,7 +131,7 @@
                 <h3 class="panel-title">Upload a Song</h3>
             </div>
             <div class="panel-body">
-                [[ SONG UPLOAD PLUGIN ]]
+                You can upload a song directly to Songtangle or place links to your Youtube or Soundcloud account.
             </div>
         </div>
     </div>
