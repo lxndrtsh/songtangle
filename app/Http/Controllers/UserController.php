@@ -69,12 +69,12 @@ class UserController extends Controller {
             $show['percentage'] += 2.5;
         }
 
-		return view('profile.layout',['user'=>$this->user, 'states'=>$this->state, 'userSettings'=>$this->userSettings, 'show' => $show]);
+		return view('profile.layout',['user'=>$this->user, 'states'=>$this->state, 'userSettings'=>$this->userSettings, 'show' => $show, 'birth' => new \Datetime($this->userSettings->getBasicInformation__DateOfBirth())]);
 	}
 
     protected function isNameSet()
     {
-        $set = $this->userSettings->getBasicInformation__Template_FullName()->first();
+        $set = $this->userSettings->getBasicInformation__Template_FullName();
 
         if(!$set) { return false; }
 
@@ -87,33 +87,25 @@ class UserController extends Controller {
 
     protected function isDobSet()
     {
-        $set = $this->userSettings->getBasicInformation__DateOfBirth()->first();
+        $set = $this->userSettings->getBasicInformation__DateOfBirth();
 
         if(!$set) { return false; }
-
-        if(!$set->date_of_birth) {
-            return false;
-        }
 
         return true;
     }
 
     protected function isGenderSet()
     {
-        $set = $this->userSettings->getBasicInformation__Gender()->first();
+        $set = $this->userSettings->getBasicInformation__Gender();
 
         if(!$set) { return false; }
-
-        if(!$set->gender) {
-            return false;
-        }
 
         return true;
     }
 
     protected function isAddressSet()
     {
-        $set = $this->userSettings->getBasicInformation__Template_Location()->first();
+        $set = $this->userSettings->getBasicInformation__Template_Location();
 
         if(!$set) {  return false; }
 
@@ -126,7 +118,7 @@ class UserController extends Controller {
 
     protected function isSettingSet()
     {
-        if(!$this->userSettings->getSetting__Count() === 1) {
+        if(!$this->userSettings->getSetting__Count() == 1) {
             return false;
         }
 
@@ -135,7 +127,7 @@ class UserController extends Controller {
 
     protected function isInstrumentSet()
     {
-        if(!$this->userMusic->getUserInstrument__Count() === 1) {
+        if(!$this->userMusic->getUserInstrument__Count() == 1) {
             return false;
         }
 
@@ -144,7 +136,7 @@ class UserController extends Controller {
 
     protected function isGenreSet()
     {
-        if(!$this->userMusic->getUserGenre__Count() === 1) {
+        if(!$this->userMusic->getUserGenre__Count() == 1) {
             return false;
         }
 
