@@ -8,6 +8,6 @@ class UserBasicInformation extends Model
 
     public function parentUser()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
 }

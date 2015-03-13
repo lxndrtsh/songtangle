@@ -35,4 +35,6 @@ Route::group(['prefix'=>'api'], function()
 		['only' => ['index', 'show']]);
 	Route::resource('genres', 'Api\GenreController',
 		['only' => ['index', 'show']]);
+    Route::resource('postings', 'Api\PostingController',
+        ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
 });

@@ -19,6 +19,7 @@ class GenreController extends Controller
         MusicGenreRepositoryInterface $genre,
         Collection $collection
     ){
+        $this->middleware('auth');
         $this->request = $request;
         $this->validation = $validation;
         $this->genre = $genre;

@@ -19,6 +19,7 @@ class InstrumentController extends Controller
         MusicInstrumentRepositoryInterface $instrument,
         Collection $collection
     ){
+        $this->middleware('auth');
         $this->request = $request;
         $this->validation = $validation;
         $this->instrument = $instrument;
