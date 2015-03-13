@@ -22,11 +22,17 @@
 
 @section('customjs')
     <script>
-        var autoInput;
+        var autoInput, feed;
         autoInput = {
                 instrument: $('#instrumentInput'),
                 genres: $('#genreInput')
                 };
+
+        feed = {
+            area: $('.feed'),
+            page: 1,
+            api: 'http://songtangle.dev/api/postings'
+        }
 
         if(autoInput.instrument.length) {
             autoInput.instrument.on('keyup', function() {
@@ -84,6 +90,79 @@
                 });
             }
 
+        }
+
+        function createFeedItem(data)
+        {
+            var feeditem;
+            console.log(data.id)
+            feeditem = '<div class="feed-item posting-'+data.id+'">';
+                feeditem += '<div class="posting">';
+                    feeditem += '<div class="posting-head">';
+                        feeditem += '<div class="row">';
+                            feeditem += '<div class="col-md-11">';
+                                feeditem += '<img src="http://www.placecage.com/c/50/50" class="pull-left who-img" />'
+                                feeditem += '<a href="#">The Rio</a> posted';
+                                feeditem += '<br />';
+                                feeditem += '45 minutes ago - Overland Park, KS';
+                            feeditem += '</div>';
+                            feeditem += '<div class="col-md-1">';
+                                feeditem += '<a href="#" class="dropdown-toggle glyphicon glyphicon-chevron-down" data-toggle="dropdown" role="button" aria-expanded="false"></a>';
+                                feeditem += '<ul class="dropdown-menu" role="menu">';
+                                    feeditem += '<li><a href="">Remove from feed</a></li>';
+                                    feeditem += '<li><a href="">Report feed posting</a></li>';
+                                feeditem += '</ul>';
+                            feeditem += '</div>';
+                        feeditem += '</div>';
+                    feeditem += '</div>';
+                    feeditem += '<div class="posting-content">';
+                        feeditem += data.posting_content
+                    feeditem += '</div>';
+                    feeditem += '<div class="posting-action">';
+                        feeditem += '<a href="">Like</a> - <a href="">Share</a>';
+                    feeditem += '</div>';
+                feeditem += '</div>';
+                feeditem += '<div class="posting-comments">';
+                    feeditem += '<div class="posting-likes">';
+                        feeditem += '<a href="">Such and such</a> likes this';
+                    feeditem += '</div>';
+                    feeditem += '<div class="row no-padding">';
+                        feeditem += '<div class="col-md-1 no-padding">';
+                            feeditem += '<img src="http://www.placecage.com/c/40/40" class="posting-me-img" />';
+                        feeditem += '</div>';
+                        feeditem += '<div class="col-md-11 no-padding">';
+                            feeditem += '<textarea class="comment-box" placeholder="write a comment"></textarea>';
+                        feeditem += '</div>';
+                    feeditem += '</div>';
+                feeditem += '</div>';
+            feeditem += '</div>';
+
+            return feeditem
+        }
+
+        if(feed.area.length) {
+            function update() {
+//                $('.feed-notice').html('Loading..');
+                $.ajax({
+                    type: 'GET',
+                    url: feed.api,
+                    timeout: 2000,
+                    success: function(data) {
+                        $.each(data.items, function() {
+                            if(!$('.posting-'+this.id).length) {
+                                $('.feed').prepend(createFeedItem(this));
+                            }
+                        });
+//                        $('.feed-notice').html('');
+                        window.setTimeout(update, 10000);
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        $('.feed-notice').html('Timeout contacting server..');
+                        window.setTimeout(update, 60000);
+                    }
+                });
+            }
+            update();
         }
     </script>
 @endsection
