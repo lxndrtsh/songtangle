@@ -19,4 +19,14 @@ class ApiBaseController extends Controller
         $this->validation = $validation;
     }
 
+    public function _validateRequest($request, $parameters)
+    {
+        $validator = $this->validation->make($request, $parameters);
+        if($validator->fails()) {
+            throw new \Exception('Validation failed: '. $validator->getMessageBag());
+        }
+
+        return true;
+    }
+
 }

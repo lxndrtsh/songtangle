@@ -1,16 +1,35 @@
 <?php namespace App\Http\Controllers\Api;
 
 
+use App\Interfaces\PostingRepositoryInterface;
 use Doctrine\Instantiator\Exception\InvalidArgumentException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Validation\Factory as Validation;
 
+/**
+ * Class PostingController
+ * @package App\Http\Controllers\Api
+ */
 class PostingController extends ApiBaseController {
 
-    public function __construct(Request $request, Validation $validation)
+    /** @var int */
+    protected $user;
+
+    /** @var int */
+    protected $limit;
+
+    /** @var int */
+    protected $page;
+
+    public function __construct(Request $request, Validation $validation, PostingRepositoryInterface $posting)
     {
         parent::__construct($request, $validation);
+        $this->middleware('auth');
+        $this->user = $request->user();
+        $this->limit = $request->exists('limit') ? $this->request->get('limit') : 50;
+        $this->page = $request->exists('page') ? $this->request->get('page') : 1;
+        $this->posting = $posting;
     }
 
 	/**
@@ -20,7 +39,9 @@ class PostingController extends ApiBaseController {
 	 */
 	public function index()
 	{
-		//
+        $this->posting->_setLimit($this->page,$this->limit);
+        $result = $this->posting->getPostingByUserId($this->user->id);
+        return response()->json($result->toArray());
 	}
 
 	/**
@@ -41,7 +62,8 @@ class PostingController extends ApiBaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$result = $this->posting->getPostingById($id);
+        return response()->json($result->toArray());
 	}
 
 	/**
