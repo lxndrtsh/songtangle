@@ -92,19 +92,42 @@
 
         }
 
+        function postingType(id)
+        {
+            var types = [
+                    'said',
+                    'posted',
+                    'shared',
+                    'posted an image',
+                    'posted a video'
+            ];
+
+            return types[id];
+        }
+
+        function throwMessage(type, content)
+        {
+            var message;
+            message = '<div class="alert alert-dismissible alert-danger">';
+                message += '<button type="button" class="close" data-dismiss="alert">×</button>'
+                message += '<strong>Uh-oh!</strong> '+content
+            message += '</div>';
+
+            return message;
+        }
+
         function createFeedItem(data)
         {
             var feeditem;
-            console.log(data.id)
             feeditem = '<div class="feed-item posting-'+data.id+'">';
                 feeditem += '<div class="posting">';
                     feeditem += '<div class="posting-head">';
                         feeditem += '<div class="row">';
                             feeditem += '<div class="col-md-11">';
                                 feeditem += '<img src="http://www.placecage.com/c/50/50" class="pull-left who-img" />'
-                                feeditem += '<a href="#">The Rio</a> posted';
+                                feeditem += '<a href="#">'+data.posting_user_information.firstname+' '+data.posting_user_information.lastname+'</a> '+postingType(data.type);
                                 feeditem += '<br />';
-                                feeditem += '45 minutes ago - Overland Park, KS';
+                                feeditem += data.created_at.date+' - [Location Not Added Yet]';
                             feeditem += '</div>';
                             feeditem += '<div class="col-md-1">';
                                 feeditem += '<a href="#" class="dropdown-toggle glyphicon glyphicon-chevron-down" data-toggle="dropdown" role="button" aria-expanded="false"></a>';
@@ -116,7 +139,7 @@
                         feeditem += '</div>';
                     feeditem += '</div>';
                     feeditem += '<div class="posting-content">';
-                        feeditem += data.posting_content
+                        feeditem += data.content
                     feeditem += '</div>';
                     feeditem += '<div class="posting-action">';
                         feeditem += '<a href="">Like</a> - <a href="">Share</a>';
@@ -142,7 +165,6 @@
 
         if(feed.area.length) {
             function update() {
-//                $('.feed-notice').html('Loading..');
                 $.ajax({
                     type: 'GET',
                     url: feed.api,
@@ -153,12 +175,13 @@
                                 $('.feed').prepend(createFeedItem(this));
                             }
                         });
-//                        $('.feed-notice').html('');
                         window.setTimeout(update, 10000);
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        $('.feed-notice').html('Timeout contacting server..');
-                        window.setTimeout(update, 60000);
+                        console.log('there was an error');
+                        $('.feed').html('');
+                        $('.feed-notice').html(throwMessage('error','There was an error getting a response from our server. Please refresh the page to try again.'));
+                        window.setTimeout(update, 10000);
                     }
                 });
             }
