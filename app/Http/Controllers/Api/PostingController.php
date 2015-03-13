@@ -54,6 +54,7 @@ class PostingController extends ApiBaseController {
             'limit' => $this->limit,
             'items' => $result->toArray()
         ]);
+//        dd($collection);
         return response()->json($collection->toArray());
 	}
 
