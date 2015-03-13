@@ -22,14 +22,19 @@ class PostingController extends ApiBaseController {
     /** @var int */
     protected $page;
 
-    public function __construct(Request $request, Validation $validation, PostingRepositoryInterface $posting)
-    {
+    public function __construct(
+        Request $request,
+        Validation $validation,
+        PostingRepositoryInterface $posting,
+        Collection $collection
+    ){
         parent::__construct($request, $validation);
         $this->middleware('auth');
         $this->user = $request->user();
         $this->limit = $request->exists('limit') ? $this->request->get('limit') : 50;
         $this->page = $request->exists('page') ? $this->request->get('page') : 1;
         $this->posting = $posting;
+        $this->collection = $collection;
     }
 
 	/**
@@ -41,7 +46,15 @@ class PostingController extends ApiBaseController {
 	{
         $this->posting->_setLimit($this->page,$this->limit);
         $result = $this->posting->getPostingByUserId($this->user->id);
-        return response()->json($result->toArray());
+        $collection = $this->collection->make([
+            'requested_data' => 'postings',
+            'response' => 200,
+            'count' => $result->count(),
+            'page' => $this->page,
+            'limit' => $this->limit,
+            'items' => $result->toArray()
+        ]);
+        return response()->json($collection->toArray());
 	}
 
 	/**
