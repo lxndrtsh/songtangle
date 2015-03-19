@@ -1,6 +1,7 @@
 <?php namespace App\Repository;
 
 use App\Interfaces\PostingRepositoryInterface;
+use App\Models\Friend;
 use App\Models\Posting;
 use App\Models\User;
 use App\Models\UserBasicInformation;
@@ -14,20 +15,26 @@ use Illuminate\Support\Collection;
 class PostingRepository implements PostingRepositoryInterface
 {
 
+    /** @var int */
     protected $range;
+
+    /** @var int */
+    protected $user_id;
 
     public function __construct(
         Posting $posting,
         User $user,
         UserBasicInformation $basicInformation,
         UserSetting $setting,
-        Collection $collection
+        Collection $collection,
+        Friend $friend
     ) {
         $this->posting = $posting;
         $this->user = $user;
         $this->basicInformation = $basicInformation;
         $this->setting = $setting;
         $this->collection = $collection;
+        $this->friend = $friend;
     }
 
     public function _setLimit($page, $limit)
@@ -44,8 +51,33 @@ class PostingRepository implements PostingRepositoryInterface
 
     public function getPostingByUserId($user_id)
     {
+        $this->user_id = $user_id;
         $results = $this->collection->make();
-        $posting = $this->posting->where('posting_user_id',$user_id)->skip($this->range['skip'])->take($this->range['take'])->get();
+        $friendArray = [];
+
+        /*
+         * Friends Query - Acquires all of the friends for the user_id account
+         */
+        $friends = $this->friend->where(function($query) {
+            $query->where('user_id',$this->user_id)
+                ->whereNotNull('accepted_at')
+                ->whereNull('deleted_at');
+        })->orWhere(function($query) {
+            $query->where('friend_user_id',$this->user_id)
+                ->whereNotNull('accepted_at')
+                ->whereNull('deleted_at');
+        })->get();
+
+        foreach($friends->toArray() as $friend) {
+            if($friend['user_id'] != $this->user_id) {
+                $friendArray[] = $friend['user_id'];
+            }
+            if($friend['friend_user_id'] != $this->user_id) {
+                $friendArray[] = $friend['friend_user_id'];
+            }
+        }
+
+        $posting = $this->posting->where('posting_user_id',$user_id)->orWhereIn('posting_user_id',$friendArray)->orderBy('created_at')->skip($this->range['skip'])->take($this->range['take'])->get();
 
         if(!is_numeric($user_id)) {
             throw new \InvalidArgumentException('Invalid argument (u) passed. Expected a numerical value.');
