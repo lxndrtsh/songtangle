@@ -9,7 +9,11 @@
                         @include('profile.u.left')
                     </div>
                     <div class="col-md-7">
-                        @include('profile.u.feed')
+                        @if($u_userSettings->getSetting__AllowViewProfile() == 1)
+                            @include('profile.u.feed')
+                        @else
+                            @include('profile.u.hidden_profile')
+                        @endif
                     </div>
                     <div class="col-md-3">
                         @include('profile.u.right')
