@@ -24,7 +24,7 @@ class MemberDatabaseSeeder extends Seeder
         DB::table('password_resets')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
-        for($i=0;$i<10;$i++) {
+        for($i=0;$i<100;$i++) {
             DB::table('users')->insert([
                 'alias' => $faker->unique()->userName,
                 'email' => $faker->unique()->email,
