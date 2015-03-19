@@ -11,7 +11,19 @@ interface UserRepositoryInterface
      * Get User by ID
      *
      * @param $id
-     * @return mixed
+     * @return User
      */
     public function getUserById($id);
+
+    /**
+     * @param $alias
+     * @return User
+     */
+    public function getUserByAlias($alias);
+
+    /**
+     * @param $email
+     * @return User
+     */
+    public function getUserByEmail($email);
 }

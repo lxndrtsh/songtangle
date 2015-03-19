@@ -3,7 +3,7 @@
         <a href="/me/settings/profile-image"><img src="http://www.placecage.com/c/250/250" /></a>
     </div>
     <div class="col-md-7 me-area no-padding">
-        <h4>{{ $userSettings->getBasicInformation__Template_FullName()->firstname }} {{ $userSettings->getBasicInformation__Template_FullName()->lastname }}</h4>
+        <h4>{{ $me_userSettings->getBasicInformation__Template_FullName()->firstname }} {{ $me_userSettings->getBasicInformation__Template_FullName()->lastname }}</h4>
         <a href="/me/settings">Edit Profile</a>
     </div>
 </div>

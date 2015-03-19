@@ -69,7 +69,13 @@ class UserController extends Controller {
             $show['percentage'] += 2.5;
         }
 
-		return view('profile.layout',['user'=>$this->user, 'states'=>$this->state, 'userSettings'=>$this->userSettings, 'show' => $show, 'birth' => new \Datetime($this->userSettings->getBasicInformation__DateOfBirth())]);
+		return view('profile.me.layout',[
+            'me' => $this->user,
+            'states' => $this->state,
+            'me_userSettings' => $this->userSettings,
+            'show' => $show,
+            'birth' => new \Datetime($this->userSettings->getBasicInformation__DateOfBirth())
+        ]);
 	}
 
     protected function isNameSet()

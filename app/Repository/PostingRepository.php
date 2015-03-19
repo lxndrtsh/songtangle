@@ -46,6 +46,11 @@ class PostingRepository implements PostingRepositoryInterface
     {
         $results = $this->collection->make();
         $posting = $this->posting->where('posting_user_id',$user_id)->skip($this->range['skip'])->take($this->range['take'])->get();
+
+        if(!is_numeric($user_id)) {
+            throw new \InvalidArgumentException('Invalid argument (u) passed. Expected a numerical value.');
+        }
+
         foreach($posting as $post)
         {
             $postingCollection = $this->collection->make([

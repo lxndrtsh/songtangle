@@ -18,7 +18,7 @@ Route::controllers([
 ]);
 
 Route::get('/me', 'UserController@index');
-Route::get('/u/{alias}', 'ProfileController@index');
+Route::get('/u/{alias}', 'ProfileController@show');
 
 Route::group(['prefix'=>'profile'], function()
 {

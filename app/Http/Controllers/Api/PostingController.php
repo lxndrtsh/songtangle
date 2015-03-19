@@ -44,8 +44,13 @@ class PostingController extends ApiBaseController {
 	 */
 	public function index()
 	{
+        if($this->request->get('u')) {
+            $uid = $this->request->get('u');
+        }else{
+            $uid = $this->user->id;
+        }
         $this->posting->_setLimit($this->page,$this->limit);
-        $result = $this->posting->getPostingByUserId($this->user->id);
+        $result = $this->posting->getPostingByUserId($uid);
         $collection = $this->collection->make([
             'requested_data' => 'postings',
             'response' => 200,
