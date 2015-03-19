@@ -11,7 +11,7 @@
         <div class="col-md-12">
             <hr />
             <div class="listing">
-                <h5>Bands You Follow</h5>
+                <h5>Bands They Follow</h5>
                 <ul>
                     <li><img src="http://www.placecage.com/c/25/25" /><a href="#">Deathklock</a></li>
                     <li><img src="http://www.placecage.com/c/25/25" /><a href="#">Molly Hatchet</a></li>
@@ -22,7 +22,7 @@
                 </ul>
             </div>
             <div class="listing">
-                <h5>Venues You Play At</h5>
+                <h5>Venues They Play At</h5>
                 <ul>
                     <li><img src="http://www.placecage.com/c/25/25" /><a href="#">The Rio</a></li>
                     <li><img src="http://www.placecage.com/c/25/25" /><a href="#">The Grenada</a></li>
