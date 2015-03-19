@@ -64,7 +64,7 @@ class UserController extends Controller {
             $show['percentage'] += 2.5;
         }
 
-        if($this->isGenderSet()) {
+        if($this->isGenreSet()) {
             $show['genres'] = false;
             $show['percentage'] += 2.5;
         }
