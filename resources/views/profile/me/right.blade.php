@@ -28,25 +28,25 @@
                         <fieldset>
                             <div class="form-group">
                                 <div class="col-lg-12">
-                                    <input type="text" class="form-control" name="inputFirstname" placeholder="First Name" value="{{ $userSettings->getBasicInformation__Firstname() }}">
+                                    <input type="text" class="form-control" name="inputFirstname" placeholder="First Name" value="{{ $me_userSettings->getBasicInformation__Firstname() }}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-lg-12">
-                                    <input type="text" class="form-control" name="inputLastname" placeholder="Last Name" value="{{ $userSettings->getBasicInformation__Lastname() }}">
+                                    <input type="text" class="form-control" name="inputLastname" placeholder="Last Name" value="{{ $me_userSettings->getBasicInformation__Lastname() }}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-lg-12">
                                     <select name="inputGender" class="form-control">
                                         <option value="">Select one</option>
-                                        @if($userSettings->getBasicInformation__Gender() == 'Male')
+                                        @if($me_userSettings->getBasicInformation__Gender() == 'Male')
                                             <option value="Male" selected>Male</option>
                                         @else
                                             <option value="Male">Male</option>
                                         @endif
 
-                                        @if($userSettings->getBasicInformation__Gender() == 'Female')
+                                        @if($me_userSettings->getBasicInformation__Gender() == 'Female')
                                             <option value="Female" selected>Female</option>
                                         @else
                                             <option value="Female">Female</option>
