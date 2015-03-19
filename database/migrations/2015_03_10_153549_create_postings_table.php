@@ -19,7 +19,7 @@ class CreatePostingsTable extends Migration {
             $table->integer('posting_type_id')->unsigned();
             $table->longText('posting_content');
             $table->integer('share_user_id')->unsigned();
-            $table->string('url');
+            $table->string('url')->nullable();
 			$table->timestamps();
             $table->softDeletes();
 
