@@ -26,74 +26,12 @@
 
 @section('customjs')
     <script>
-        var autoInput, feed;
-        autoInput = {
-                instrument: $('#instrumentInput'),
-                genres: $('#genreInput')
-                };
+        var feed;
 
         feed = {
             area: $('.feed'),
             page: 1,
-            api: 'http://songtangle.dev/api/postings?u={{$u_User->id}}'
-        }
-
-        if(autoInput.instrument.length) {
-            autoInput.instrument.on('keyup', function() {
-                var q = $(this).val();
-                if(q.length >= 3) {
-                    $.ajax({
-                        url: "http://songtangle.dev/api/instruments?via=wildcard",
-                        data: "q="+q,
-                        success: function(data) {
-                            $("#instrumentResults").html('');
-                            $.each(data.items, function() {
-                                console.log(this.instrument);
-                                $("#instrumentResults").append(
-                                        '<div class="checkbox">' +
-                                            '<label>' +
-                                                '<input type="checkbox" name="instrumentsToSelect['+this.id+']" aria-checked="false"> '+this.instrument+
-                                            '</label>' +
-                                        '</div>'
-                                );
-                            });
-                            $('#instrumentResults').show();
-                        },
-                        dataType: "json"
-                    });
-                }
-            });
-        }
-
-        if(autoInput.genres.length) {
-            if(autoInput.genres.length) {
-                autoInput.genres.on('keyup', function() {
-                    var q = $(this).val();
-                    console.log(q.length);
-                    if(q.length >= 3) {
-                        $.ajax({
-                            url: "http://songtangle.dev/api/genres?via=wildcard",
-                            data: "q="+q,
-                            success: function(data) {
-                                $("#genreResults").html('');
-                                $.each(data.items, function() {
-                                    console.log(this.genres);
-                                    $("#genreResults").append(
-                                            '<div class="checkbox">' +
-                                            '<label>' +
-                                            '<input type="checkbox" name="genresToSelect['+this.id+']" aria-checked="false"> '+this.genre+
-                                            '</label>' +
-                                            '</div>'
-                                    );
-                                });
-                                $('#genreResults').show();
-                            },
-                            dataType: "json"
-                        });
-                    }
-                });
-            }
-
+            api: '{{ $endpoint }}postings?u={{ $u_User->id }}'
         }
 
         function postingType(id)
