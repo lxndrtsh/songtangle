@@ -5,6 +5,7 @@ use App\Interfaces\UserRepositoryInterface;
 use App\Interfaces\UserSettingsGetterRepositoryInterface;
 use App\Models\State;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 
 /**
  * Class ProfileController
@@ -45,11 +46,14 @@ class ProfileController extends Controller {
         $this->userSettings->setUserId($u->id);
         $this->userMusic->setUserId($u->id);
 
+        $endpoint = Config::get('api.endpoint');
+
         return view('profile.u.layout',[
             'me' => $this->user,
             'u_userSettings' => $this->userSettings,
             'u_userMusic' => $this->userMusic,
-            'u_User' => $u
+            'u_User' => $u,
+            'endpoint' => $endpoint
         ]);
     }
 

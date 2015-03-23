@@ -4,6 +4,7 @@ use App\Interfaces\UserMusicGetterRepositoryInterface;
 use App\Interfaces\UserSettingsGetterRepositoryInterface;
 use App\Models\State;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 
 //use App\Repository\UserRepository;
 
@@ -69,12 +70,15 @@ class UserController extends Controller {
             $show['percentage'] += 2.5;
         }
 
+        $endpoint = Config::get('api.endpoint');
+
 		return view('profile.me.layout',[
             'me' => $this->user,
             'states' => $this->state,
             'me_userSettings' => $this->userSettings,
             'show' => $show,
-            'birth' => new \Datetime($this->userSettings->getBasicInformation__DateOfBirth())
+            'birth' => new \Datetime($this->userSettings->getBasicInformation__DateOfBirth()),
+            'endpoint' => $endpoint
         ]);
 	}
 

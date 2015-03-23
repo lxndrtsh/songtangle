@@ -25,13 +25,17 @@
         var autoInput, feed;
         autoInput = {
                 instrument: $('#instrumentInput'),
-                genres: $('#genreInput')
+                genres: $('#genreInput'),
+                endpoint: {
+                    instruments: '{{ $endpoint }}instruments?via=wildcard',
+                    genres: '{{ $endpoint }}genres?via=wildcard'
+                }
                 };
 
         feed = {
             area: $('.feed'),
             page: 1,
-            api: 'http://songtangle.dev/api/postings'
+            api: '{{ $endpoint }}postings'
         }
 
         if(autoInput.instrument.length) {
@@ -39,7 +43,7 @@
                 var q = $(this).val();
                 if(q.length >= 3) {
                     $.ajax({
-                        url: "http://songtangle.dev/api/instruments?via=wildcard",
+                        url: autoInput.endpoint.instruments,
                         data: "q="+q,
                         success: function(data) {
                             $("#instrumentResults").html('');
@@ -68,7 +72,7 @@
                     console.log(q.length);
                     if(q.length >= 3) {
                         $.ajax({
-                            url: "http://songtangle.dev/api/genres?via=wildcard",
+                            url: autoInput.endpoint.genres,
                             data: "q="+q,
                             success: function(data) {
                                 $("#genreResults").html('');
