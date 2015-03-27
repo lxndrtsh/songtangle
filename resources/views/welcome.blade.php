@@ -5,7 +5,7 @@
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="jumbotron">
-					<h1>Local musicians rejoice!</h1>
+					<h1>Local musicians rejoice!!!!!!</h1>
 					<p>Connect with local musicians and make something awesome. You can listen to each other's music, read lyrics and even promote your work. Connect with other local musicians and jam together as well.</p>
 					<p><a class="btn btn-primary btn-lg">Learn more</a></p>
 				</div>
